@@ -1,3 +1,330 @@
+# Datos del alumno
+## **Nombre:** Pedro Torrús Castillo
+## **Correo electrónico:** ptc00006@red.ujaen.es 
+## **Tablero de Trello:** 
+&nbsp;
+# Capturas e información de la base de datos
+
+
+![Home de FaunaDB](./assets/img/homeFauna.png)
+*Home de FaunaDB.* &#8593;
+&nbsp;
+
+![Vista de la base de datos de FaunaDB](./assets/img/baseDatos.png)
+*Menú de la base de datos creada donde aparece la colección creada* &#8593;
+&nbsp;
+
+![Colección creada en FaunaDB](./assets/img/coleccionFauna.png)
+*Documentos de la colección creada* &#8593;
+
+&nbsp;
+## Documentos creados  
+### Documento 1
+```json
+{
+  "ref": Ref(Collection("Karate"), "359174998734143693"),
+  "ts": 1678795823880000,
+  "data": {
+    "nombre": "Sandra",
+    "apellidos": "Sánchez Jaime ",
+    "fechaNacimiento": {
+      "dia": 16,
+      "mes": "Septiembre",
+      "año": 1981
+    },
+    "nacimiento": "Talavera de la Reina",
+    "edad": 41,
+    "palmarésMundiales": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ]
+  }
+}
+```
+
+ &nbsp;
+### Documento 2
+```json
+{
+  "ref": Ref(Collection("Karate"), "359175668800422092"),
+  "ts": 1678795837840000,
+  "data": {
+    "nombre": "Damián Hugo",
+    "apellidos": "Quintero Capdevila ",
+    "fechaNacimiento": {
+      "dia": 4,
+      "mes": "Julio",
+      "año": 1984
+    },
+    "nacimiento": "Buenos Aires",
+    "edad": 38,
+    "palmarésMundiales": [
+      2006,
+      2007,
+      2008,
+      2010,
+      2011,
+      2012,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 3
+```json
+{
+  "ref": Ref(Collection("Karate"), "359175950417526988"),
+  "ts": 1678795729000000,
+  "data": {
+    "nombre": "Carmen",
+    "apellidos": "Vicente Cabañas ",
+    "fechaNacimiento": {
+      "dia": 22,
+      "mes": "Enero",
+      "año": 1987
+    },
+    "nacimiento": "Las Palmas de Gran Canaria",
+    "edad": 36,
+    "palmarésMundiales": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2010
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 4
+```json
+{
+  "ref": Ref(Collection("Karate"), "359176421093933261"),
+  "ts": 1678796177930000,
+  "data": {
+    "nombre": "José Manuel",
+    "apellidos": "Egea Cáceres",
+    "fechaNacimiento": {
+      "dia": 20,
+      "mes": "Febrero",
+      "año": 1964
+    },
+    "nacimiento": "Madrid",
+    "edad": 59,
+    "palmarésMundiales": [
+      1985,
+      1987,
+      1989,
+      1988,
+      1990,
+      1992
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 5
+```json
+{
+  "ref": Ref(Collection("Karate"), "359176551615430861"),
+  "ts": 1678796352590000,
+  "data": {
+    "nombre": "Manuel",
+    "apellidos": "Rasero Ruiz",
+    "fechaNacimiento": {
+      "dia": 13,
+      "mes": "Marzo",
+      "año": 1986
+    },
+    "nacimiento": "Badajoz",
+    "edad": 59,
+    "palmarésMundiales": [
+      2004,
+      2005,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2013,
+      2014,
+      2015
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 6
+```json
+{
+  "ref": Ref(Collection("Karate"), "359176790880551116"),
+  "ts": 1678796530520000,
+  "data": {
+    "nombre": "Maria",
+    "apellidos": "Torres García",
+    "fechaNacimiento": {
+      "dia": 22,
+      "mes": "Julio",
+      "año": 1997
+    },
+    "nacimiento": "Málaga",
+    "edad": 25,
+    "palmarésMundiales": [
+      2018,
+      2021,
+      2022
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 7
+```json
+{
+  "ref": Ref(Collection("Karate"), "359177045336391884"),
+  "ts": 1678796773195000,
+  "data": {
+    "nombre": "Babacar",
+    "apellidos": "Seck Sakho",
+    "fechaNacimiento": {
+      "dia": 12,
+      "mes": "Junio",
+      "año": 1998
+    },
+    "nacimiento": "Senegal",
+    "edad": 24,
+    "palmarésMundiales": [
+      2018,
+      2019,
+      2021,
+      2022
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 8
+```json
+{
+  "ref": Ref(Collection("Karate"), "359177409749057741"),
+  "ts": 1678797120730000,
+  "data": {
+    "nombre": "Laura",
+    "apellidos": "Palacio González",
+    "fechaNacimiento": {
+      "dia": 21,
+      "mes": "Noviembre",
+      "año": 1986
+    },
+    "nacimiento": "Madrid",
+    "edad": 36,
+    "palmarésMundiales": [
+      2014,
+      2016,
+      2018,
+      2019
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 9
+```json
+{
+  "ref": Ref(Collection("Karate"), "359177649210261708"),
+  "ts": 1678797349090000,
+  "data": {
+    "nombre": "Iván",
+    "apellidos": "Leal Reglero",
+    "fechaNacimiento": {
+      "dia": 18,
+      "mes": "Septiembre",
+      "año": 1978
+    },
+    "nacimiento": "Madrid",
+    "edad": 44,
+    "palmarésMundiales": [
+      2000,
+      2002,
+      2004,
+      2006,
+      2008
+    ]
+  }
+}
+```
+
+&nbsp;
+### Documento 10
+```json
+{
+  "ref": Ref(Collection("Karate"), "359177882009862349"),
+  "ts": 1678797571110000,
+  "data": {
+    "nombre": "Francisco",
+    "apellidos": "Merino Molina",
+    "fechaNacimiento": {
+      "dia": 11,
+      "mes": "Abril",
+      "año": 1963
+    },
+    "nacimiento": "Madrid",
+    "edad": 59,
+    "palmarésMundiales": [
+      1982,
+      1983,
+      1984,
+      1988,
+      1990
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10405406&assignment_repo_type=AssignmentRepo)
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
