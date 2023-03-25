@@ -14,10 +14,10 @@ const faunadb = require('faunadb'),
     q = faunadb.query;
 
 const client = new faunadb.Client({
-    secret: '¿¿¿ CLAVE SECRETA EN FAUNA PARA ESTA BBDD???',
+    secret: 'fnAE_A6bU9AAzf4Ok3gTy-FsELh32jPonNv3yN1g',
 });
 
-const COLLECTION = "¿¿¿ COLECCION ???"
+const COLLECTION = "Karate"
 
 // CALLBACKS DEL MODELO
 
@@ -61,8 +61,29 @@ const CB_MODEL_SELECTS = {
         }
     },
 
-}
+    /**
+     * Método para obtener todas los deportistas de la BBDD.
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+    getTodosDeportistas: async (req, res) => {
+        try {
+            let deportistas = await client.query(
+                q.Map(
+                    q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                    q.Lambda("X", q.Get(q.Var("X")))
+                )
+            )
+            console.log( deportistas ) // Para comprobar qué se ha devuelto en personas
+            CORS(res)
+                .status(200)
+                .json(deportistas)
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
 
+}
 
 
 // CALLBACKS ADICIONALES
@@ -93,9 +114,9 @@ const CB_OTHERS = {
         try {
             CORS(res).status(200).json({
                 mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "¿¿¿ AUTOR ???",
-                email: "¿¿¿ EMAIL ???",
-                fecha: "¿¿¿ FECHA ???"
+                autor: "Pedro Torrús Castillo",
+                email: "ptc00006@red.ujaen.es",
+                fecha: "Marzo, 2023"
             });
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })

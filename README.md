@@ -1,7 +1,7 @@
 # Datos del alumno
-## **Nombre:** Pedro Torrús Castillo
-## **Correo electrónico:** ptc00006@red.ujaen.es 
-## **Tablero de Trello:** 
+### **Nombre:** Pedro Torrús Castillo
+### **Correo electrónico:** ptc00006@red.ujaen.es 
+### **Tablero de Trello:** 
 &nbsp;
 # Capturas e información de la base de datos
 
@@ -299,6 +299,22 @@
   }
 }
 ```
+
+# Implementación de incrementos
+
+## **Incremento 1:** Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
+
+
+![Muestra de la tabla Trello función acercaDe ](./assets/img/acercaDeFin.png) 
+*Función acercaDe marcada como finalizada* &#8593;
+
+&nbsp;
+![Muestra del código función acercaDe ](./assets/img/acercaDeCodigo.png) 
+*Función acercaDe con los datos introducidos* &#8593;
+
+&nbsp;
+![Muestra del front-end función acercaDe ](./assets/img/acercaDeFronted.png) 
+*Visualización en el fronted de la funcion AcercaDe* &#8593;
 
 
 

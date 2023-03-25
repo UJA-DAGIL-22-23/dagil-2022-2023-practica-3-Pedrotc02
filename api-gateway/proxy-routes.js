@@ -16,7 +16,7 @@ const ROUTES = [
                 [`^/plantilla`]: '',
             },
         }
-    }
+    },
 ]
 
 exports.routes = ROUTES;
