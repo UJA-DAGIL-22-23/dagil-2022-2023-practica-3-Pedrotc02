@@ -148,9 +148,6 @@ Plantilla.plantillaTablaDeportistas.cuerpo = `
         <td>${Plantilla.plantillaTags.NACIMIENTO}</td>
         <td>${Plantilla.plantillaTags.FECHA.DIA}/${Plantilla.plantillaTags.FECHA.MES}/${Plantilla.plantillaTags.FECHA.ANIO}</td>
         <td>${Plantilla.plantillaTags.PALMARES_MUNDIALES}</td>
-        <td>
-                    <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.NOMBRE}')" class="opcion-secundaria mostrar">Mostrar</a></div>
-        </td>
     </tr>
     `;
 
