@@ -67,7 +67,6 @@ describe('Servidor PLANTILLA:', () => {
   })
 });
 
-//Es una prueba
 it('Devuelve un vector de tamaño 10 al consultar mediante getTodosDeportistas', (done) => {
   supertest(app)
     .get('/getTodosDeportistas')
@@ -80,5 +79,20 @@ it('Devuelve un vector de tamaño 10 al consultar mediante getTodosDeportistas',
     .end((error) => { error ? done.fail(error) : done(); }
     );
 });
+
+it('Devuelve Sandra al recuperar los datos de la Persona con id 359174998734143693 mediante getPorId', (done) => {
+  supertest(app)
+    .get('/getPorId/359174998734143693')
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .expect(function (res) {
+      //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
+      assert(res.body.data.hasOwnProperty('nombre'));
+      assert(res.body.data.nombre === "Sandra");
+    })
+    .end((error) => { error ? done.fail(error) : done(); }
+    );
+});
+
 
 

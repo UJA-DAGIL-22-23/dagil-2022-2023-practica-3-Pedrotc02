@@ -111,6 +111,12 @@ Plantilla.procesarAcercaDe = function () {
 // Plantilla para poner los datos de varios deportistas dentro de una tabla
 Plantilla.plantillaTablaDeportistas = {}
 
+// Plantilla para poner los datos de un deportista en un tabla dentro de un formulario
+Plantilla.plantillaFormularioDeportista = {}
+
+// Objeto para almacenar los datos de la persona que se está mostrando
+Plantilla.personaMostrada = null
+
 
 // Tags que voy a usar para sustituir los campos
 Plantilla.plantillaTags = {
@@ -121,6 +127,7 @@ Plantilla.plantillaTags = {
     "NACIMIENTO":  "### NACIMIENTO ###",
     "FECHA": {DIA: "###DIA###", MES: "###MES###", ANIO: "###ANIO###"},
     "PALMARES_MUNDIALES": "### PALMARES_MUNDIALES ###"
+
 }
 
 // Cabecera de la tabla
@@ -148,6 +155,9 @@ Plantilla.plantillaTablaDeportistas.cuerpo = `
         <td>${Plantilla.plantillaTags.NACIMIENTO}</td>
         <td>${Plantilla.plantillaTags.FECHA.DIA}/${Plantilla.plantillaTags.FECHA.MES}/${Plantilla.plantillaTags.FECHA.ANIO}</td>
         <td>${Plantilla.plantillaTags.PALMARES_MUNDIALES}</td>
+        <td>
+            <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar</a></div>
+        </td>
     </tr>
     `;
 
@@ -157,10 +167,33 @@ Plantilla.plantillaTablaDeportistas.pie = `        </tbody>
              `;
 
 
+
+// Cabecera del formulario
+Plantilla.plantillaFormularioDeportista.formulario = `
+<form method='post' action=''>
+    <table width="100%" class="listado-personas">
+        <thead>
+            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">Edad</th>
+            <th width="15%">Año Nacimiento</th><th width="25%">Fecha</th><th width="25%">Palmarés Mundiales</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+            <td>${Plantilla.plantillaTags.ID}</td>
+            <td>${Plantilla.plantillaTags.NOMBRE}</td>
+            <td>${Plantilla.plantillaTags.APELLIDOS}</td>
+            <td>${Plantilla.plantillaTags.EDAD}</td>
+            <td>${Plantilla.plantillaTags.NACIMIENTO}</td>
+            <td>${Plantilla.plantillaTags.FECHA.DIA}/${Plantilla.plantillaTags.FECHA.MES}/${Plantilla.plantillaTags.FECHA.ANIO}</td>
+            <td>${Plantilla.plantillaTags.PALMARES_MUNDIALES}</td>
+        </tbody>
+    </table>
+</form>
+`;
+
 /**
  * Actualiza el cuerpo de la plantilla deseada con los datos del deportista que se le pasa
  * @param {String} Plantilla Cadena conteniendo HTML en la que se desea cambiar lso campos de la plantilla por datos
- * @param {Plantilla} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * @param {Plantilla} deportista Objeto con los datos de la persona que queremos escribir en el TR
  * @returns La plantilla del cuerpo de la tabla con los datos actualizados 
  */           
 Plantilla.sustituyeTags = function (plantilla, deportista) {
@@ -175,9 +208,6 @@ Plantilla.sustituyeTags = function (plantilla, deportista) {
         .replace(new RegExp(Plantilla.plantillaTags.FECHA.ANIO, 'g'), deportista.data.fechaNacimiento.año)
         .replace(new RegExp(Plantilla.plantillaTags.PALMARES_MUNDIALES, 'g'), deportista.data.palmarésMundiales)
 }
-
-
-
 
 
 /**
@@ -232,6 +262,77 @@ Plantilla.imprimeTodosDeportistas = function (vector) {
  */
 Plantilla.listar = function () {
     Plantilla.mostrarDeportistas(Plantilla.imprimeTodosDeportistas);
+}
+
+/**
+ * Actualiza el formulario con los datos del deportista que se le pasa
+ * @param {Plantilla} deportista Objeto con los datos del deportista que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados 
+ */
+Plantilla.plantillaFormularioDeportista.actualiza = function (deportista) {
+    return Plantilla.sustituyeTags(this.formulario, deportista)
+}
+
+
+/**
+ * Almacena los datos del deportista que se está mostrando
+ * @param {Plantilla} deportista Datos del deportista a almacenar
+ */
+Plantilla.almacenaDatos = function (deportista) {
+    Plantilla.personaMostrada = deportista;
+}
+
+/**
+ * Imprime los datos de un deportista como una tabla dentro de un formulario usando la plantilla del formulario.
+ * @param {deportista} Plantilla Objeto con los datos del deportista
+ * @returns Una cadena con la tabla que tiene ya los datos actualizados
+ */
+Plantilla.deportistaComoFormulario = function (deportista) {
+    return Plantilla.plantillaFormularioDeportista.actualiza( deportista );
+}
+
+/**
+ * Función para mostrar en pantalla los detalles de un deportista que se ha recuperado de la BBDD por su id
+ * @param {Plantilla} deportista Datos de la persona a mostrar
+ */
+Plantilla.imprimeUnDeportista = function (deportista) {
+    // console.log(persona) // Para comprobar lo que hay en vector
+    let msj = Plantilla.deportistaComoFormulario(deportista);
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Mostrar una persona", msj)
+
+    // Actualiza el objeto que guarda los datos mostrados
+    Plantilla.almacenaDatos(deportista)
+}
+
+/**
+ * Función que recuperar todos los deportistas llamando al MS Personas. 
+ * Posteriormente, llama a la función callBackFn para trabajar con los datos recuperados.
+ * @param {String} idDeportista Identificador del deportista a mostrar
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recuperaUnDeportista = async function (idDeportista, callBackFn) {
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idDeportista
+        const response = await fetch(url);
+        if (response) {
+            const deportista = await response.json()
+            callBackFn(deportista)
+        }
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+}
+
+/**
+mostrar
+ * Función principal para mostrar los datos de un deportista desde el MS y, posteriormente, imprimirla.
+ * @param {String} idDeportista Identificador del deportista a mostrar
+ */
+Plantilla.mostrar = function (idDeportista) {
+    this.recuperaUnDeportista(idDeportista, this.imprimeUnDeportista);
 }
 
 

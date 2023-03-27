@@ -301,12 +301,13 @@
 ```
 
 # Implementación de incrementos
+## Incremento 1
 
-## **Incremento 1:** Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
+### **HU 1:** Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
 
 
 ![Muestra de la tabla Trello función acercaDe ](./assets/img/acercaDeFin.png) 
-*Función acercaDe marcada como finalizada* &#8593;
+*HU marcada como finalizada* &#8593;
 
 &nbsp;
 ![Muestra del código función acercaDe ](./assets/img/acercaDeCodigo.png) 
@@ -314,13 +315,16 @@
 
 &nbsp;
 ![Muestra del front-end función acercaDe ](./assets/img/acercaDeFronted.png) 
-*Visualización en el fronted de la funcion AcercaDe* &#8593;
+*Visualización en el frontend de la funcion AcercaDe* &#8593;
+
+
 
 &nbsp;
-## **Incremento 2:** Ver un listado con todos los datos de todos los jugadores/equipos
+## **HU 2:** Ver un listado con todos los datos de todos los jugadores/equipos
 
 ![Muestra de la tabla Trello función getTodosDeportistas ](./assets/img/getTodosFin.png) 
-*Función getTodosDeportistas marcada como finalizada* &#8593;
+
+*HU marcada como finalizada* &#8593;
 
 &nbsp;
 ![Muestra del código función getTodosDeportistas ](./assets/img/getTodosCodigo.png) 
@@ -328,9 +332,28 @@
 
 &nbsp;
 ![Muestra del front-end función getTodosDeportistas ](./assets/img/getTodosFronted.png) 
-*Visualización en el fronted de todos los deportistas* &#8593;
+*Visualización en el frontend de todos los deportistas* &#8593;
 
 
+
+&nbsp;
+## **HU 3:** Ver todos los datos de un determinado jugador/equipo.
+
+![Muestra de la tabla Trello función getId ](./assets/img/getIdFin.png)
+
+*HU marcada como finalizada* &#8593;
+
+&nbsp;
+![Muestra del código función getId ](./assets/img/getIdCodigo.png) 
+*Función getId* &#8593;
+
+&nbsp;
+![Muestra del front-end función getId ](./assets/img/getIdFronted1.png) 
+*Opción de mostrar para ver los datos de un determinado deportista* &#8593;
+
+&nbsp;
+![Muestra del front-end función getId2 ](./assets/img/getIdFronted2.png) 
+*Visualización en el frontend de los datos de un determinado jugador* &#8593;
 
 
 

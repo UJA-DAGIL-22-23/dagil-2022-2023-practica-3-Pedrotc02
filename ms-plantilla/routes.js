@@ -56,6 +56,22 @@ router.get("/getTodosDeportistas", async (req, res) => {
     }
 });
 
+router.param("idDeportista", (req, res, next, id) => {
+    next();
+});
+
+/**
+ * Devuelve los datos del deportista con el id pasado
+ */
+router.get("/getPorId/:idDeportista", async (req, res) => {
+    try {
+        await callbacks.getPorId(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 
 // Exporto el módulo para poder usarlo en server
 module.exports = router;
