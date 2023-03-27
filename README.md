@@ -316,8 +316,19 @@
 ![Muestra del front-end función acercaDe ](./assets/img/acercaDeFronted.png) 
 *Visualización en el fronted de la funcion AcercaDe* &#8593;
 
+&nbsp;
+## **Incremento 2:** Ver un listado con todos los datos de todos los jugadores/equipos
 
+![Muestra de la tabla Trello función getTodosDeportistas ](./assets/img/getTodosFin.png) 
+*Función getTodosDeportistas marcada como finalizada* &#8593;
 
+&nbsp;
+![Muestra del código función getTodosDeportistas ](./assets/img/getTodosCodigo.png) 
+*Función getTodosDeportistas* &#8593;
+
+&nbsp;
+![Muestra del front-end función getTodosDeportistas ](./assets/img/getTodosFronted.png) 
+*Visualización en el fronted de todos los deportistas* &#8593;
 
 
 
