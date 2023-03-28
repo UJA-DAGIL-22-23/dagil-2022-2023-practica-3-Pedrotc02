@@ -300,11 +300,18 @@
 }
 ```
 
+&nbsp;
 # Implementación de incrementos
 ## Incremento 1
 
-### **HU 1:** Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
+![Muestra de la tabla Trello inicio incremento ](./assets/img/comienzoIncremento1.png) 
+*Tabla Trello al inicio del incremento* &#8593;
 
+![Muestra de la tabla Trello final incremento ](./assets/img/finalIncremento1.png) 
+*Tabla Trello al final del incremento* &#8593;
+
+&nbsp;
+### **HU 1:** Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
 
 ![Muestra de la tabla Trello función acercaDe ](./assets/img/acercaDeFin.png) 
 *HU marcada como finalizada* &#8593;
@@ -355,11 +362,9 @@
 ![Muestra del front-end función getId2 ](./assets/img/getIdFronted2.png) 
 *Visualización en el frontend de los datos de un determinado jugador* &#8593;
 
+&nbsp;
 
-
-
-
-
+&nbsp;
 
 
 
