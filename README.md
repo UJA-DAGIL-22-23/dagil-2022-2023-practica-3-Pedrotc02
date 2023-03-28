@@ -1,7 +1,7 @@
 # Datos del alumno
 ### **Nombre:** Pedro Torrús Castillo
 ### **Correo electrónico:** ptc00006@red.ujaen.es 
-### **Tablero de Trello:** 
+### **Tablero de Trello:** https://trello.com/b/IWBXtSmB/práctica3
 &nbsp;
 # Capturas e información de la base de datos
 
