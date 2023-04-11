@@ -10,6 +10,123 @@
 /// Creo el espacio de nombres
 let Plantilla = {};
 
+// Tags que voy a usar para sustituir los campos
+Plantilla.plantillaTags = {
+    "ID": "### ID ###",
+    "NOMBRE": "### NOMBRE ###",
+    "APELLIDOS": "### APELLIDOS ###",
+    "EDAD": "### EDAD ###",
+    "NACIMIENTO":  "### NACIMIENTO ###",
+    "FECHA": {DIA: "###DIA###", MES: "###MES###", ANIO: "###ANIO###"},
+    "PALMARES_MUNDIALES": "### PALMARES_MUNDIALES ###"
+
+}
+
+
+/// Plantilla para poner los datos de un deportista en un tabla dentro de un formulario
+Plantilla.formularioAñadir = {}
+
+Plantilla.formularioEditar = {}
+
+
+// Cabecera del formulario
+Plantilla.formularioAñadir.formulario = `
+<form method='post' action=''>
+    <table width="100%" class="listado-personas">
+        <thead>
+            <th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">Edad</th>
+            <th width="15%">Nacimiento</th><th text-align:center">Dia</th><th text-align:center">Mes</th><th text-align:center">Año</th>
+            <th width="5%">Palmarés Mundiales</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-persona-nombre" 
+                        name="nombre_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable"
+                        id="form-persona-apellidos" 
+                        name="apellidos_persona"/></td>
+                <td><input type="number" class="form-persona-elemento editable"
+                        id="form-persona-edad" 
+                        name="edad_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-persona-nacimiento"
+                        name="nacimiento_persona"/></td>
+                <td><input type="number" class="form-persona-elemento editable" 
+                        id="form-persona-dia" min="1" max="31"
+                        name="dia_entrada_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-persona-mes" 
+                        name="fmes_persona"/></td>
+                <td><input type="number" class="form-persona-elemento editable" 
+                        id="form-persona-anio" min="1950" max="2004" size="8" 
+                        name="año_entrada_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-persona-palmares" min="1950" max="2004" size="8" 
+                        name="palmares entrada"></td>
+                        
+                <td>
+                    <div><th width="15%"></th><a href="javascript:Plantilla.guardar()" class="opcion-terciaria guardar ocultar">Guardar</a></div>
+                    <div><a href="javascript:Plantilla.procesarHome()" class="opcion-terciaria editar ocultar">Volver a home</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+`;
+
+
+
+Plantilla.formularioEditar.formularioEditar = `
+<form method='post' action=''>
+    <table width="100%" class="listado-personas">
+        <thead>
+            <th width="20%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">Edad</th>
+            <th width="15%">Nacimiento</th><th text-align:center">Dia</th><th text-align:center">Mes</th><th text-align:center">Año</th>
+            <th width="5%">Palmarés Mundiales</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+                
+                <td><input type="text" class="form-persona-elemento" disabled
+                        value="${Plantilla.plantillaTags.ID}" id="form-personaEditada-id"
+                        name="id_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-personaEditada-nombre" required value="${Plantilla.plantillaTags.NOMBRE}"
+                        name="nombre_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable"
+                        id="form-personaEditada-apellidos" required value="${Plantilla.plantillaTags.APELLIDOS}"
+                        name="apellidos_persona"/></td>
+                <td><input type="number" class="form-persona-elemento editable"
+                        id="form-personaEditada-edad" required value="${Plantilla.plantillaTags.EDAD}"
+                        name="edad_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-personaEditada-nacimiento" required value="${Plantilla.plantillaTags.NACIMIENTO}"
+                        name="nacimiento_persona"/></td>
+                <td><input type="number" class="form-persona-elemento editable" 
+                        id="form-personaEditada-dia" min="1" max="31" required value="${Plantilla.plantillaTags.FECHA.DIA}"
+                        name="dia_entrada_persona"/></td> 
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-personaEditada-mes" required value="${Plantilla.plantillaTags.FECHA.MES}"
+                        name="fmes_persona"/></td>
+                <td><input type="number" class="form-persona-elemento editable" 
+                        id="form-personaEditada-anio" min="1950" max="2004" size="8" required value="${Plantilla.plantillaTags.FECHA.ANIO}"
+                        name="año_entrada_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-personaEditada-palmares" min="1950" max="2004" size="8" required value="${Plantilla.plantillaTags.PALMARES_MUNDIALES}"
+                        name="palmares entrada"></td>
+                        
+                <td>
+                    <div><th width="15%"></th><a href="javascript:Plantilla.guardarDatosEditados()" class="opcion-terciaria editar ocultar">Guardar</a></div>
+                    <div><a href="javascript:Plantilla.procesarHome()" class="opcion-terciaria editar ocultar">Volver a home</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+`;
+
+
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
     mensaje: "Datos Descargados No válidos",
@@ -117,19 +234,6 @@ Plantilla.plantillaFormularioDeportista = {}
 // Objeto para almacenar los datos de la persona que se está mostrando
 Plantilla.personaMostrada = null
 
-
-// Tags que voy a usar para sustituir los campos
-Plantilla.plantillaTags = {
-    "ID": "### ID ###",
-    "NOMBRE": "### NOMBRE ###",
-    "APELLIDOS": "### APELLIDOS ###",
-    "EDAD": "### EDAD ###",
-    "NACIMIENTO":  "### NACIMIENTO ###",
-    "FECHA": {DIA: "###DIA###", MES: "###MES###", ANIO: "###ANIO###"},
-    "PALMARES_MUNDIALES": "### PALMARES_MUNDIALES ###"
-
-}
-
 // Cabecera de la tabla
 Plantilla.plantillaTablaDeportistas.cabecera = `<table width="100%" class="listado-deportistas">
                     <thead>
@@ -185,6 +289,11 @@ Plantilla.plantillaFormularioDeportista.formulario = `
             <td>${Plantilla.plantillaTags.NACIMIENTO}</td>
             <td>${Plantilla.plantillaTags.FECHA.DIA}/${Plantilla.plantillaTags.FECHA.MES}/${Plantilla.plantillaTags.FECHA.ANIO}</td>
             <td>${Plantilla.plantillaTags.PALMARES_MUNDIALES}</td>
+            <td>
+                <div><a href="javascript:Plantilla.eliminar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Eliminar</a></div>
+                <div><a href="javascript:Plantilla.procesarHome()" class="opcion-secundaria mostrar">Volver a home</a></div>
+                <div><a href="javascript:Plantilla.editarDeportista('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria editar">Editar</a></div>
+            </td>
         </tbody>
     </table>
 </form>
@@ -283,6 +392,15 @@ Plantilla.almacenaDatos = function (deportista) {
 }
 
 /**
+ * Recupera los valores almacenados del deportista que se estaba mostrando
+ * @return Datos de la persona a almacenada
+ */
+
+Plantilla.recuperaDatosAlmacenados = function () {
+    return this.personaMostrada;
+}
+
+/**
  * Imprime los datos de un deportista como una tabla dentro de un formulario usando la plantilla del formulario.
  * @param {deportista} Plantilla Objeto con los datos del deportista
  * @returns Una cadena con la tabla que tiene ya los datos actualizados
@@ -327,7 +445,6 @@ Plantilla.recuperaUnDeportista = async function (idDeportista, callBackFn) {
 }
 
 /**
-mostrar
  * Función principal para mostrar los datos de un deportista desde el MS y, posteriormente, imprimirla.
  * @param {String} idDeportista Identificador del deportista a mostrar
  */
@@ -336,4 +453,153 @@ Plantilla.mostrar = function (idDeportista) {
 }
 
 
+/**
+ * Función para guardar los nuevos datos de una persona en la BBDD
+ */
+Plantilla.guardar = async function () {
+    try {
+        let url = Frontend.API_GATEWAY + "/plantilla/nuevoDeportista/"
+        let id_persona = document.getElementById("form-persona-nombre").value
 
+        let palmares = document.getElementById("form-persona-palmares").value;
+
+
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({
+                "id": id_persona,
+                "nombre": document.getElementById("form-persona-nombre").value,
+                "apellidos": document.getElementById("form-persona-apellidos").value,
+                "edad": parseInt(document.getElementById("form-persona-edad").value),
+                "nacimiento": document.getElementById("form-persona-nacimiento").value,
+                "fechaNacimiento":{
+                    "dia": parseInt(document.getElementById("form-persona-dia").value),
+                    "mes": document.getElementById("form-persona-mes").value,
+                    "año": parseInt(document.getElementById("form-persona-anio").value)
+                },
+                "palmarésMundiales": document.getElementById("form-persona-palmares").value.split(',').map((elem) => parseInt(elem))
+
+            }), // body data type must match "Content-Type" header
+        })
+        /*
+        Error: No procesa bien la respuesta devuelta
+        if (response) {
+            const persona = await response.json()
+            alert(persona)
+        }
+        */
+        // Plantilla.mostrar(id_persona)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway " + error)
+        //console.error(error)
+    }
+}
+
+Plantilla.añadirNuevoDeportista = function(){
+    let msj = Plantilla.formularioAñadir.formulario
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Añadir un deportista", msj)
+}
+
+Plantilla.eliminar = async function(idDeportista){
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/eliminarDeportista/" + idDeportista
+
+        const response = await fetch(url, {
+            method: 'post', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+          
+        })
+
+    } catch (error) {
+        
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+}
+
+
+/**
+ * Función para guardar los datos editados de un deportista en la BBDD
+ */
+Plantilla.guardarDatosEditados = async function () {
+    try {
+        let url = Frontend.API_GATEWAY + "/plantilla/editarDeportista/"
+        let id_persona = document.getElementById("form-personaEditada-id").value
+
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({
+                "id": id_persona,
+                "nombre": document.getElementById("form-personaEditada-nombre").value,
+                "apellidos": document.getElementById("form-personaEditada-apellidos").value,
+                "edad": parseInt(document.getElementById("form-personaEditada-edad").value),
+                "nacimiento": document.getElementById("form-personaEditada-nacimiento").value,
+                "fechaNacimiento":{
+                    "dia": parseInt(document.getElementById("form-personaEditada-dia").value),
+                    "mes": document.getElementById("form-personaEditada-mes").value,
+                    "año": parseInt(document.getElementById("form-personaEditada-anio").value)
+                },
+                "palmarésMundiales": document.getElementById("form-personaEditada-palmares").value.split(',').map((elem) => parseInt(elem))
+
+            }), // body data type must match "Content-Type" header
+        })
+        /*
+        Error: No procesa bien la respuesta devuelta
+        if (response) {
+            const persona = await response.json()
+            alert(persona)
+        }
+        */
+        Plantilla.mostrar(id_persona)
+        
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway " + error)
+        console.error(error)
+    }
+}
+
+Plantilla.formularioEditar.actualiza = function (deportista) {
+    return Plantilla.sustituyeTags(this.formularioEditar, deportista)
+}
+
+
+Plantilla.imprimeUnDeportistaEditar = function (deportista) {
+    // console.log(persona) // Para comprobar lo que hay en vector
+    let msj = Plantilla.deportistaComoFormularioEditar(deportista);
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Editar una persona", msj)
+
+    // Actualiza el objeto que guarda los datos mostrados
+    Plantilla.almacenaDatos(deportista)
+}
+
+
+Plantilla.deportistaComoFormularioEditar = function (deportista) {
+    return Plantilla.formularioEditar.actualiza( deportista );
+}
+
+
+Plantilla.editarDeportista = function(idDeportista){
+    this.recuperaUnDeportista(idDeportista, this.imprimeUnDeportistaEditar);
+}

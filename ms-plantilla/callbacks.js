@@ -33,7 +33,7 @@ function CORS(res) {
         .header(
             'Access-Control-Allow-Headers',
             'Origin, X-Requested-With, Content-Type, Accept'
-        )
+        ).header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE")
     return res;
 }
 
@@ -57,6 +57,7 @@ const CB_MODEL_SELECTS = {
             )
             res.status(200).json(personas)
         } catch (error) {
+            console.log(error)
             res.status(500).json({ error: error.description })
         }
     },
@@ -79,6 +80,7 @@ const CB_MODEL_SELECTS = {
                 .status(200)
                 .json(deportistas)
         } catch (error) {
+            console.log(error)
             CORS(res).status(500).json({ error: error.description })
         }
     },
@@ -98,10 +100,120 @@ const CB_MODEL_SELECTS = {
                 .status(200)
                 .json(deportista)
         } catch (error) {
+            console.log(error)
             CORS(res).status(500).json({ error: error.description })
         }
     },
 
+     /**
+    * Método para añadir un nuevo deportista
+    * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+    * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+    */
+     nuevoDeportista: async (req, res) => {
+        try {
+            let valorDevuelto = {}
+            
+            let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]) : req.body
+
+            let deportista = await client.query(
+                q.Create(
+                    q.Collection(COLLECTION),
+                    {
+                    data: {
+                        nombre: data.nombre,
+                        apellidos: data.apellidos,
+                        edad: data.edad,
+                        nacimiento: data.nacimiento,
+                        fechaNacimiento: data.fechaNacimiento,
+                        palmarésMundiales: data.palmarésMundiales,
+                    },
+                    },
+                )
+            )
+
+            .then((ret) => {
+                valorDevuelto = ret
+                //console.log("Valor devuelto ", valorDevuelto)
+                CORS(res)
+                    .status(200)
+                    .header( 'Content-Type', 'application/json' )
+                    .json(valorDevuelto)
+            })
+            
+        } catch (error) {
+            console.log(error)
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+
+     /**
+    * Método para eliminar un deportista
+    * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+    */
+     eliminarDeportista: async (req,res) => {
+        try {
+            
+            let deportista = await client.query(
+                q.Delete(q.Ref(q.Collection(COLLECTION), req.params.idDeportista))
+            )
+            
+            .then((ret) => {
+                //console.log("Valor devuelto ", valorDevuelto)
+                CORS(res)
+                .status(200)
+                .json(ret)
+            })
+        } catch (error) {
+            console.log(error);
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+
+
+    /**
+    * Método para cambiar los datos de un deportista
+    * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+    * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+    */
+    editarDeportista: async (req, res) => {
+        console.log("editarDeportista req.body", req) // req.body contiene todos los parámetros de la llamada
+        try {
+            let valorDevuelto = {}
+        
+            let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]) : req.body
+            console.log("SETTODO data es", data)
+            let deportista = await client.query(
+                q.Update(
+                    q.Ref(q.Collection(COLLECTION), data.id),
+                    {
+                        data: {
+                            nombre: data.nombre,
+                            apellidos: data.apellidos,
+                            edad: data.edad,
+                            nacimiento: data.nacimiento,
+                            fechaNacimiento: data.fechaNacimiento,
+                            palmarésMundiales: data.palmarésMundiales
+                        },
+                    },
+                )
+            )
+                .then((ret) => {
+                    valorDevuelto = ret
+                    console.log("Valor devuelto ", valorDevuelto)
+                    CORS(res)
+                        .status(200)
+                        .header( 'Content-Type', 'application/json' )
+                        .json(valorDevuelto)
+                })
+
+        } catch (error) {
+            console.log(error)
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
 
 }
 

@@ -71,6 +71,42 @@ router.get("/getPorId/:idDeportista", async (req, res) => {
     }
 });
 
+/**
+ * Añade un nuevo deportista a la base de datos
+ */
+router.post("/nuevoDeportista", async (req, res) => {
+    try {
+        await callbacks.nuevoDeportista(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+/**
+ * Elimina un deportista de la base de datos
+ */
+router.post("/eliminarDeportista/:idDeportista", async (req, res) => {
+    try {
+        await callbacks.eliminarDeportista(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+/**
+ * Modifica los datos de un deportista
+ */
+router.post("/editarDeportista", async (req, res) => {
+    try {
+        await callbacks.editarDeportista(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 
 
 // Exporto el módulo para poder usarlo en server
