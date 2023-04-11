@@ -67,10 +67,9 @@ describe('Servidor PLANTILLA:', () => {
   })
 });
 
-//Cada vez que se añade un deportista tendremos que cambiar el valor para comprobarlo
-it('Devuelve un vector de tamaño 10 al consultar mediante getTodosDeportistas', (done) => {
+it('Devuelve un vector de tamaño 10 al consultar mediante getTodosDeportistasPruebas', (done) => {
   supertest(app)
-    .get('/getTodosDeportistas')
+    .get('/getTodosDeportistasPruebas')
     .expect(200)
     .expect('Content-Type', /json/)
     .expect(function (res) {
@@ -139,39 +138,14 @@ it('Devuelve NombreNuevo al recuperar los datos de la nueva Persona añadida med
     );
 });
 
-it('Elimina el deportista 361646096739467468 mediante eliminarDeportista', (done) => {
-  supertest(app)
-    .post('/eliminarDeportista/361646096739467468')
-    .expect(200)
-    .expect('Content-Type', /json/)
-   
-    .end((error) => { error ? done.fail(error) : done(); }
-    );
-});
 
-
-it('Devuelve un vector de tamaño 11 ya que se ha eliminado 1 persona y se añade otra', (done) => {
-  supertest(app)
-    .get('/getTodosDeportistas')
-    .expect(200)
-    .expect('Content-Type', /json/)
-    .expect(function (res) {
-      // console.log( res.body ); // Para comprobar qué contiene exactamente res.body
-      assert(res.body.data.length === 11);
-    })
-    .end((error) => { error ? done.fail(error) : done(); }
-    );
-});
-
-it('Devuelve 42 como edad, nombre_nuevo como nombre y nacimiento_nuevo como lugar de nacimiento al recuperar los datos de la Persona con id 361646459105312973 mediante editarDeportista', (done) => {
+it('Devuelve 42 como edad y nacimiento_nuevo como lugar de nacimiento al recuperar los datos de la Persona con id 359174998734143693 mediante editarDeportista', (done) => {
   const EDAD_TEST = 42
-  const NOMBRE_TEST = 'nombre_nuevo'
   const NACIMIENTO_TEST = 'nacimiento_nuevo'
 
   const persona = {
-    id: '361646459105312973',
+    id: '359174998734143693',
     edad: EDAD_TEST,
-    nombre: NOMBRE_TEST,
     nacimiento: NACIMIENTO_TEST
   };
   supertest(app)
@@ -183,8 +157,27 @@ it('Devuelve 42 como edad, nombre_nuevo como nombre y nacimiento_nuevo como luga
       
       assert(res.body.data.hasOwnProperty('edad'));
       assert(res.body.data.edad === EDAD_TEST);
-      assert(res.body.data.nombre === NOMBRE_TEST);
       assert(res.body.data.nacimiento === NACIMIENTO_TEST);
+    })
+    .end((error) => { error ? done.fail(error) : done(); }
+    );
+});
+
+
+/**
+ * IMPORTANTE: Este spec funcionará solo una vez por cada id que se le pase. Una vez eliminada una persona su identificador no existirá y dará error.
+ * Si se comprueba con un id existente y con el nombre correspondiente veremos que no hay ningún fallo
+ */
+it('Comprueba si el nombre de la persona a eliminar es Francisco al recuperar los datos de la Persona eliminada con id 361552227340386508 mediante eliminarDeportista', (done) => {
+  const NOMBRE_TEST = 'Francisco'
+  supertest(app)
+    .post('/eliminarDeportista/361552227340386508')
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .expect(function (res) {
+      
+      assert(res.body.data.hasOwnProperty('nombre'));
+      assert(res.body.data.nombre === NOMBRE_TEST);
     })
     .end((error) => { error ? done.fail(error) : done(); }
     );

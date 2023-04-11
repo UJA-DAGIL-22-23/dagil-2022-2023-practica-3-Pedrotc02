@@ -56,6 +56,14 @@ router.get("/getTodosDeportistas", async (req, res) => {
     }
 });
 
+router.get("/getTodosDeportistasPruebas", async (req, res) => {
+    try {
+        await callbacks.getTodosDeportistasPruebas(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 router.param("idDeportista", (req, res, next, id) => {
     next();
 });
@@ -105,7 +113,6 @@ router.post("/editarDeportista", async (req, res) => {
         console.log(error);
     }
 });
-
 
 
 

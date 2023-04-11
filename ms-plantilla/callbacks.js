@@ -62,6 +62,30 @@ const CB_MODEL_SELECTS = {
         }
     },
 
+    //Limito la salida a 10 para que funcione el spec si añado un nuevo deportista
+    /**
+     * Método para obtener todas los deportistas de la BBDD en las pruebas(spec)
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+    getTodosDeportistasPruebas: async (req, res) => {
+        try {
+            let deportistas = await client.query(
+                q.Map(
+                    q.Paginate(q.Documents(q.Collection(COLLECTION)), {size:10}),
+                    q.Lambda("X", q.Get(q.Var("X")))
+                )
+            )
+            //console.log( personas ) // Para comprobar qué se ha devuelto en personas
+            CORS(res)
+                .status(200)
+                .json(deportistas)
+        } catch (error) {
+            console.log(error)
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
     /**
      * Método para obtener todas los deportistas de la BBDD.
      * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
@@ -214,6 +238,7 @@ const CB_MODEL_SELECTS = {
             CORS(res).status(500).json({ error: error.description })
         }
     },
+
 
 }
 

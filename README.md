@@ -305,9 +305,11 @@
 ## Incremento 1
 
 ![Muestra de la tabla Trello inicio incremento ](./assets/img/comienzoIncremento1.png) 
+
 *Tabla Trello al inicio del incremento* &#8593;
 
 ![Muestra de la tabla Trello final incremento ](./assets/img/finalIncremento1.png) 
+
 *Tabla Trello al final del incremento* &#8593;
 
 &nbsp;
@@ -315,10 +317,12 @@
 
 &nbsp;
 ![Muestra del código función acercaDe ](./assets/img/acercaDeCodigo.png) 
+
 *Función acercaDe con los datos introducidos* &#8593;
 
 &nbsp;
-![Muestra del front-end función acercaDe ](./assets/img/acercaDeFronted.png) 
+![Muestra del front-end función acercaDe ](./assets/img/acercaDeFronted.png)
+
 *Visualización en el frontend de la funcion AcercaDe* &#8593;
 
 
@@ -328,10 +332,12 @@
 
 &nbsp;
 ![Muestra del código función getTodosDeportistas ](./assets/img/getTodosCodigo.png) 
+
 *Función getTodosDeportistas* &#8593;
 
 &nbsp;
 ![Muestra del front-end función getTodosDeportistas ](./assets/img/getTodosFronted.png) 
+
 *Visualización en el frontend de todos los deportistas* &#8593;
 
 
@@ -341,14 +347,17 @@
 
 &nbsp;
 ![Muestra del código función getId ](./assets/img/getIdCodigo.png) 
+
 *Función getId* &#8593;
 
 &nbsp;
 ![Muestra del front-end función getId ](./assets/img/getIdFronted1.png) 
+
 *Opción de mostrar para ver los datos de un determinado deportista* &#8593;
 
 &nbsp;
 ![Muestra del front-end función getId2 ](./assets/img/getIdFronted2.png) 
+
 *Visualización en el frontend de los datos de un determinado jugador* &#8593;
 
 &nbsp;
@@ -356,39 +365,47 @@
 &nbsp;
 ## Incremento 2
 ![Muestra de la tabla Trello inicio incremento ](./assets/img/comienzoIncremento2.png) 
+
 *Tabla Trello al inicio del incremento* &#8593;
 
 ![Muestra de la tabla Trello final incremento ](./assets/img/finIncremento2.png) 
+
 *Tabla Trello al final del incremento* &#8593;
 
 &nbsp;
 ## **HU 1:** Añadir un nuevo jugador.
 &nbsp;
 ![Muestra del código función nuevoDeportista ](./assets/img/nuevoDeportistaCodigo.png) 
+
 *Función nuevoDeportista* &#8593;
 
 &nbsp;
 ![Muestra del front-end función nuevoDeportista ](./assets/img/nuevoDeportistaFronted.png) 
+
 *Visualización en el frontend de la interfaz para añadir un nuevo deportista* &#8593;
 
 &nbsp;
 ## **HU 2:** Eliminar un jugador.
 &nbsp;
 ![Muestra del código función eliminarDeportista ](./assets/img/eliminarDeportistaCodigo.png) 
+
 *Función nuevoDeportista* &#8593;
 
 &nbsp;
 ![Muestra del front-end función eliminarDeportista ](./assets/img/eliminarDeportistaFronted.png) 
+
 *Visualización en el frontend de la interfaz para eliminar deportista* &#8593;
 
 &nbsp;
 ## **HU 3 y HU4:** Editar el nombre de un jugador junto con otros campos
 &nbsp;
 ![Muestra del código función editarDeportista ](./assets/img/editarDeportistaCodigo.png) 
+
 *Función editarDeportista* &#8593;
 
 &nbsp;
 ![Muestra del front-end función editarDeportista ](./assets/img/editarDeportistaFronted.png) 
+
 *Visualización en el frontend de la interfaz para editar un deportista* &#8593;
 
 

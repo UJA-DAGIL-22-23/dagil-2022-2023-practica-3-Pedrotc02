@@ -5,12 +5,12 @@
  * @date 03-Feb-2023
  */
 
- table.listado-deportistas {
+ table.listado-personas {
     width: 100%;
     border: 1px solid rgba(0, 0, 100, 0.8);
 }
 
-table.listado-deportistas thead th {
+table.listado-personas thead th {
     margin: 3px;
     height: 2.5em;
     background-color: rgba(0, 0, 0, 0.4);

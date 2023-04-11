@@ -227,6 +227,7 @@ Plantilla.procesarAcercaDe = function () {
 
 // Plantilla para poner los datos de varios deportistas dentro de una tabla
 Plantilla.plantillaTablaDeportistas = {}
+Plantilla.plantillaTablaDeportistasSoloNombres = {}
 
 // Plantilla para poner los datos de un deportista en un tabla dentro de un formulario
 Plantilla.plantillaFormularioDeportista = {}
@@ -235,7 +236,7 @@ Plantilla.plantillaFormularioDeportista = {}
 Plantilla.personaMostrada = null
 
 // Cabecera de la tabla
-Plantilla.plantillaTablaDeportistas.cabecera = `<table width="100%" class="listado-deportistas">
+Plantilla.plantillaTablaDeportistas.cabecera = `<table width="100%" class="listado-personas">
                     <thead>
                         <th width="10%">Id</th>
                         <th width="20%">Nombre</th>
@@ -265,11 +266,14 @@ Plantilla.plantillaTablaDeportistas.cuerpo = `
     </tr>
     `;
 
+
+
 // Pie de la tabla
 Plantilla.plantillaTablaDeportistas.pie = `        </tbody>
              </table>
              `;
 
+             
 
 
 // Cabecera del formulario
@@ -296,6 +300,7 @@ Plantilla.plantillaFormularioDeportista.formulario = `
             </td>
         </tbody>
     </table>
+    
 </form>
 `;
 
@@ -327,6 +332,7 @@ Plantilla.sustituyeTags = function (plantilla, deportista) {
 Plantilla.plantillaTablaDeportistas.actualiza = function (deportista) {
     return Plantilla.sustituyeTags(this.cuerpo, deportista)
 }
+
 
 /**
  * Función que recupera todos los deportistas llamando al MS plantilla
@@ -366,12 +372,14 @@ Plantilla.imprimeTodosDeportistas = function (vector) {
     Frontend.Article.actualizar("Listado de deportistas", msj)
 }
 
+
 /**
  * Función principal para recuperar los deportistas desde el MS y, posteriormente, imprimirlas.
  */
 Plantilla.listar = function () {
     Plantilla.mostrarDeportistas(Plantilla.imprimeTodosDeportistas);
 }
+
 
 /**
  * Actualiza el formulario con los datos del deportista que se le pasa
@@ -603,3 +611,4 @@ Plantilla.deportistaComoFormularioEditar = function (deportista) {
 Plantilla.editarDeportista = function(idDeportista){
     this.recuperaUnDeportista(idDeportista, this.imprimeUnDeportistaEditar);
 }
+
