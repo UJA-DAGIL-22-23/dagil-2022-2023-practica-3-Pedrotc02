@@ -273,7 +273,34 @@ Plantilla.plantillaTablaDeportistas.pie = `        </tbody>
              </table>
              `;
 
-             
+
+//Tabla para mostrar los nombres de los deportistas
+Plantilla.plantillaTablaDeportistasSoloNombres.cabecera = `<table width="100%" class="listado-nombre-deportistas">
+<thead>
+    
+    <th width="50%">Nombre</th>
+</thead>
+<tbody>
+`;
+
+
+
+Plantilla.plantillaTablaDeportistasSoloNombres.cuerpo = `
+
+    <tr title="${Plantilla.plantillaTags.NOMBRE}">
+        <td style="text-align:center;">${Plantilla.plantillaTags.NOMBRE}</td>  
+    </tr>
+
+`;
+
+Plantilla.plantillaTablaDeportistasSoloNombres.pie = `
+    </tbody>
+    <div><a href="javascript:Plantilla.mostrarNombresOrdenados()" class="opcion-secundaria ordenar">Ordenar alfabéticamente</a></div>
+    </table>
+
+`
+
+
 
 
 // Cabecera del formulario
@@ -300,6 +327,9 @@ Plantilla.plantillaFormularioDeportista.formulario = `
             </td>
         </tbody>
     </table>
+
+    <div><a href="javascript:Plantilla.botonAnterior('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Anterior</a></div>
+    <div><a href="javascript:Plantilla.botonSiguiente('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Siguiente</a></div>
     
 </form>
 `;
@@ -360,9 +390,11 @@ Plantilla.mostrarDeportistas = async function (callBackFn) {
     }
 }
 
+let vectorDeportistas = null
+
 Plantilla.imprimeTodosDeportistas = function (vector) {
     // console.log(vector) // Para comprobar lo que hay en vector
-
+    vectorDeportistas = vector
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaDeportistas.cabecera
     vector.forEach(e => msj += Plantilla.plantillaTablaDeportistas.actualiza(e))
@@ -612,3 +644,77 @@ Plantilla.editarDeportista = function(idDeportista){
     this.recuperaUnDeportista(idDeportista, this.imprimeUnDeportistaEditar);
 }
 
+Plantilla.plantillaTablaDeportistasSoloNombres.actualiza = function (deportista) {
+    return Plantilla.sustituyeTags(this.cuerpo, deportista)
+}
+
+
+Plantilla.imprimeNombreTodosDeportistas = function (vector) {
+    // console.log(vector) // Para comprobar lo que hay en vector
+    let msj = Plantilla.plantillaTablaDeportistasSoloNombres.cabecera
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    vector.forEach(e => msj += Plantilla.plantillaTablaDeportistasSoloNombres.actualiza(e))
+    msj += Plantilla.plantillaTablaDeportistasSoloNombres.pie
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listado de los nombres de deportistas", msj)
+}
+
+
+/**
+ * Función principal para recuperar los nombres de los deportistas desde el MS y, posteriormente, imprimirlas.
+ */
+Plantilla.listarNombres = function () {
+    Plantilla.mostrarDeportistas(Plantilla.imprimeNombreTodosDeportistas);
+}
+
+/**
+ * Función principal para ordenar alfabéticamente los nombres de jugadores 
+ */
+Plantilla.ordenarNombres = function (vectorNombres) {
+    let vectorOrdenado = [];
+
+    vectorNombres.forEach(element => vectorOrdenado.push(element.data.nombre))
+
+    vectorOrdenado.sort();
+
+    let msj = Plantilla.plantillaTablaDeportistasSoloNombres.cabecera
+    vectorOrdenado.forEach(element => msj += Plantilla.plantillaTablaDeportistasSoloNombres.cuerpo.replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), element))
+    msj += Plantilla.plantillaTablaDeportistasSoloNombres.pie
+
+    Frontend.Article.actualizar("Listado de los nombres de deportistas ordenados alfabéticamente", msj)
+
+
+}
+
+/**
+ * Función para mostrar por pantalla los nombres ordenados de los jugadores
+ */
+
+Plantilla.mostrarNombresOrdenados = function(){
+    Plantilla.mostrarDeportistas(Plantilla.ordenarNombres);
+}
+
+
+Plantilla.botonAnterior = function(idPersona){
+    
+    let vector = vectorDeportistas
+    
+    let pos = vector.findIndex((element) => element.ref['@ref'].id === idPersona);
+    if(pos == 0){
+        pos = vector.length
+    }
+    pos = (pos - 1) 
+
+    this.mostrar(vector[pos].ref['@ref'].id);
+};
+
+Plantilla.botonSiguiente = function(idPersona){
+    
+    let vector = vectorDeportistas
+    
+    let pos = vector.findIndex((element) => element.ref['@ref'].id === idPersona);
+    pos = (pos + 1) % vector.length
+
+    this.mostrar(vector[pos].ref['@ref'].id);
+};

@@ -114,6 +114,29 @@ router.post("/editarDeportista", async (req, res) => {
     }
 });
 
+/**
+ * Devuelve los datos del deportista siguiente del deportista con el id pasado
+ */
+router.get("/siguienteDeportista/:idDeportista", async (req, res) => {
+    try {
+        await callbacks.siguienteDeportista(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+/**
+ * Devuelve los datos del deportista anterior del deportista con el id pasado
+ */
+router.get("/anteriorDeportista/:idDeportista", async (req, res) => {
+    try {
+        await callbacks.anteriorDeportista(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 
 
 // Exporto el módulo para poder usarlo en server

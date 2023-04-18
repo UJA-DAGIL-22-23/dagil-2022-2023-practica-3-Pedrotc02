@@ -280,6 +280,65 @@ const CB_OTHERS = {
         }
     },
 
+    /**
+     * Función que devuelve el siguiente elemento de la base de datos
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+    * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+
+    siguienteDeportista: async (req, res) => {
+        //console.log("editarDeportista req.body", req) // req.body contiene todos los parámetros de la llamada
+        try {
+
+            let deportista = await client.query(
+                q.Paginate(
+                    q.Documents(q.Collection(COLLECTION)),
+                    {
+                         after: [ q.Ref(q.Collection(COLLECTION), req.params.idDeportista) ],
+                    }
+                )
+            )
+            console.log( deportista ) // Para comprobar qué se ha devuelto en persona
+            CORS(res)
+                .status(200)
+                .json(deportista)
+
+        } catch (error) {
+            console.log(error)
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+    /**
+     * Función que devuelve el siguiente elemento de la base de datos
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+    * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+
+    anteriorDeportista: async (req, res) => {
+        //console.log("editarDeportista req.body", req) // req.body contiene todos los parámetros de la llamada
+        try {
+
+            let deportista = await client.query(
+                q.Paginate(
+                    q.Documents(q.Collection(COLLECTION)),
+                    {
+                        before: [ q.Ref(q.Collection(COLLECTION), req.params.idDeportista) ],
+                    },
+                )
+            )
+            console.log( deportista ) // Para comprobar qué se ha devuelto en persona
+            CORS(res)
+                .status(200)
+                .json(deportista)
+
+        } catch (error) {
+            console.log(error)
+            CORS(res).status(500).json({ error: error.description })
+        }
+    }
+
+
 }
 
 // Une todos los callbacks en un solo objeto para poder exportarlos.

@@ -412,14 +412,54 @@
 &nbsp;
 
 
+&nbsp;
+## Incremento 3
+![Muestra de la tabla Trello inicio incremento ](./assets/img/comienzoIncremento3.png) 
+
+*Tabla Trello al inicio del incremento* &#8593;
+
+![Muestra de la tabla Trello final incremento ](./assets/img/finIncremento3.png) 
+
+*Tabla Trello al final del incremento* &#8593;
+
+&nbsp;
+## **HU 1:** Ver un listado solo con los nombres de todos los jugadores.
+&nbsp;
+
+![Muestra del front-end función listado de nombres ](./assets/img/nombresFronted.png) 
+
+*Visualización en el frontend del listado de todos los nombres* &#8593;
+
+&nbsp;
+## **HU 2:** Ordenar todos los nombres alfabéticamente.
+&nbsp;
+![Muestra del código para ordenarlos ](./assets/img/ordenarCodigo.png) 
+
+*Función para ordenar los deportistas* &#8593;
+
+&nbsp;
+![Muestra del front-end función ordenarNombres ](./assets/img/ordenarFronted.png) 
+
+*Visualización en el frontend del listado de todos los nombres ordenados alfabéticamente* &#8593;
+
+&nbsp;
+## **HU 3:** Ver los datos de un determinado jugador, cambiando con un solo click para ver los datos del anterior o del siguiente.
+&nbsp;
+![Muestra del código función botones Anterior y Siguiente ](./assets/img/botonesCodigo.png) 
+
+*Funciones para los botones anterior y siguiente* &#8593;
+
+&nbsp;
+![Muestra del front-end de los botones anterior y siguiente ](./assets/img/botonesFronted.png) 
+
+*Visualización en el frontend de los botones para pasar de deportista* &#8593;
+
+
+&nbsp;
 
 
 
-
-
-
-
-
+&nbsp;
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10405406&assignment_repo_type=AssignmentRepo)
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
